@@ -1,0 +1,176 @@
+1. Create (Créer)
+
+Fonctionnement
+
+Insertion de Données: Créer implique l'ajout de nouvelles données dans la base de données. Cela peut être l'ajout d'une nouvelle ligne dans une table.
+Commandes SQL Typiques: INSERT INTO en SQL.
+Dans les Applications Web: Par exemple, lorsqu'un utilisateur s'inscrit sur un site, ses détails sont insérés dans la base de données.
+
+Considérations Techniques
+
+Validation des Données: Assurer que les données entrées sont valides et respectent les contraintes de la base de données.
+Gestion des Identifiants Uniques: S'assurer que chaque nouvelle entrée a un identifiant unique.
+
+INSERT INTO {NOM TABLE DE DONEE} (nom,prenom,mail) VALUE ( "laurence","kieffer","laurencema57@hotmail.fr" )
+
+INSERT INTO {NOM TABLE DE DONNEE} : Indique que vous allez insérer des données dans une table spécifique.
+(nom, prenom, mail) : Spécifiez les colonnes dans lesquelles vous allez insérer des valeurs.
+VALUES ("laurence", "kieffer", "laurencema57@hotmail.fr") : Fournit les valeurs à insérer dans les colonnes correspondantes de la table.
+
+
+2. Read (Lire)
+
+Fonctionnement
+
+Récupération de Données: Lecture et affichage des données existantes. Cela peut être la récupération de toutes les données ou d'un sous-ensemble, selon des critères spécifiques.
+Commandes SQL Typiques: SELECT en SQL.
+Dans les Applications Web: Afficher les informations d'un utilisateur ou les produits d'un catalogue.
+
+Considérations Techniques
+
+Performance: Optimiser les requêtes pour une récupération rapide, surtout avec de grands volumes de données.
+Sécurité: Prévenir l'exposition de données sensibles.
+
+SELECT {NOM TABLE DE DONNEE} nom,prenom,mail FROM tblclient
+
+SELECT * : Sélectionnez toutes les colonnes de la table.
+FROM {NOM TABLE DE DONNEE} : Spécifiez la table à partir de laquelle vous souhaitez récupérer les données.
+WHERE id = 5 : Filtrez les données en fonction de la condition spécifiée, dans ce cas, où la colonne "id" est égale à 5.
+
+
+3. Update (Mettre à jour)
+
+Fonctionnement
+Modification de Données Existantes: Changer ou mettre à jour les informations déjà stockées.
+Commandes SQL Typiques: UPDATE en SQL.
+Dans les Applications Web: Modifier les détails d'un profil utilisateur ou mettre à jour le statut d'une commande.
+Considérations Techniques
+Gestion des Conflits: S'assurer que les mises à jour n'entrent pas en conflit avec d'autres opérations ou données.
+Validation des Modifications: Vérifier que les modifications respectent les règles de la base de données.
+
+UPDATE {NOM TABLE DE DONNEE} SET nom="Jane" WHERE id = 5
+
+UPDATE {NOM TABLE DE DONNEE} : Indique que vous allez mettre à jour des données dans une table spécifique.
+SET nom = "Jane" : Définit la nouvelle valeur que vous souhaitez attribuer à la colonne "nom".
+WHERE id = 5 : Spécifiez la condition pour déterminer quelles lignes de données seront mises à jour, dans ce cas, où l'id est égal à 5.
+
+
+4. Delete (Supprimer)
+
+Fonctionnement:
+
+Effacement de Données: Supprimer des données existantes.
+Commandes SQL Typiques: DELETE FROM en SQL.
+Dans les Applications Web: Supprimer un compte utilisateur ou retirer un produit de la liste.
+
+~Considérations Techniques~
+
+Sécurité: Confirmer l'identité et les autorisations de l'utilisateur effectuant la suppression.
+Impact Permanent: Comprendre que la suppression est souvent irréversible et doit être gérée avec prudence.
+Archivage vs Suppression: Parfois, il est préférable d'archiver les données plutôt que de les supprimer complètement.
+
+DELETE FROM {NOM TABLE DE DONNEE} nom WHERE id = 5
+
+DELETE FROM {NOM TABLE DE DONNEE} : Indique que vous allez supprimer des données dans une table spécifique.
+WHERE id = 5 : Spécifiez la condition pour déterminer quelles lignes de données seront supprimées, dans ce cas, où l'id est égal à 5.
+
+<Chacune de ces opérations joue un rôle crucial dans la manipulation des données au sein d'une application. La maîtrise de CRUD est essentielle pour assurer une gestion efficace et sécurisée des données dans les systèmes de bases de données modernes>
+
+
+5. Order (Ordonner)
+
+Order (Ordonner)
+
+Fonctionnement :
+
+L'opération ORDER est utilisée pour trier les résultats d'une requête SELECT en fonction des valeurs d'une ou plusieurs colonnes dans un ordre spécifié, tel que croissant (ascendant) ou décroissant (descendant).
+Cette opération est particulièrement utile lorsque vous souhaitez présenter les données d'une manière spécifique pour faciliter la compréhension ou l'analyse.
+
+Commandes SQL Typiques :
+
+SELECT nom, prenom, age FROM Utilisateurs ORDER BY nom ASC;
+
+SELECT nom, prenom, age : Spécifie les colonnes que vous souhaitez récupérer.
+FROM Utilisateurs : Indique la table à partir de laquelle vous récupérez les données.
+ORDER BY nom ASC : Trie les résultats par ordre croissant de la colonne "nom". Vous pouvez également utiliser "DESC" pour trier par ordre décroissant.
+
+
+6. Limit (Limite)
+
+Limit (Limite)
+
+Fonctionnement :
+
+L'opération LIMIT est utilisée pour limiter le nombre de résultats renvoyés par une requête SELECT. Elle est couramment utilisée pour la pagination ou pour limiter la quantité de données renvoyées dans une requête.
+
+Commandes SQL Typiques :
+
+SELECT nom, prenom FROM Utilisateurs LIMIT 10,10 ;
+
+SELECT nom, prenom : Spécifie les colonnes que vous souhaitez récupérer.
+FROM Utilisateurs : Indique la table à partir de laquelle vous récupérez les données.
+LIMIT 10 : Limite les résultats à un maximum de 10 lignes. Cela signifie que seules les 10 premières lignes seront renvoyées.
+
+7. Clés Primaires
+
+Définition
+
+Une clé primaire est un champ unique dans une table de base de données qui identifie chaque enregistrement de manière unique.
+
+Caractéristiques
+
+Unicité: Aucune valeur en double n'est autorisée dans une clé primaire. Chaque valeur doit être unique.
+Non-nullité: Une clé primaire ne peut jamais être nulle (vide).
+Exemple
+
+Dans une table Utilisateurs, la colonne ID_Utilisateur pourrait être la clé primaire. Chaque utilisateur aurait un ID unique, par exemple, U100, U101, etc.
+
+
+8. Clés Étrangères
+
+Définition
+
+Une clé étrangère est un champ dans une table de base de données qui crée un lien vers la clé primaire d'une autre table.
+
+Fonctionnalités
+
+Créer des Relations: Permet de relier les données de différentes tables.
+Assurer l'Intégrité Référentielle: Empêche les actions qui détruiraient les liens entre les tables.
+Exemple
+
+Si nous avons une autre table Commandes, avec une colonne ID_Utilisateur_Commande faisant référence à ID_Utilisateur dans la table Utilisateurs, cette colonne est une clé étrangère. Elle assure que chaque commande est associée à un utilisateur existant.
+
+Intégrité des Données
+
+Elles maintiennent la cohérence des données à travers les tables.
+Exemple: Si un enregistrement de produit est supprimé de la table Produits, tous les enregistrements dans Commandes se référant à ce produit peuvent être affectés ou protégés par des règles d'intégrité référentielle.
+Normalisation
+
+Les clés étrangères aident à éviter la redondance et la duplication des données.
+
+9. INNER JOIN en SQL
+
+Définition
+
+INNER JOIN est un type de jointure en SQL qui combine les lignes de deux tables (ou plus) basées sur une condition de correspondance commune.
+Seules les lignes qui satisfont la condition de jointure dans les deux tables sont incluses dans le résultat final.
+
+Syntaxe de Base
+
+SELECT colonnes
+FROM table1
+INNER JOIN table2
+ON table1.colonne_commune = table2.colonne_commune;
+
+table1, table2: Noms des tables à joindre.
+colonne_commune: Colonne sur laquelle les tables sont jointes. Souvent, c'est une clé primaire dans une table et une clé étrangère dans l'autre.
+
+Fonctionnement
+
+L'opération INNER JOIN prend chaque ligne de la première table et la compare à chaque ligne de la seconde table.
+Si les lignes des deux tables satisfont la condition de jointure (ON), elles sont combinées en une seule ligne dans le résultat.
+
+Sélection des Colonnes: Vous pouvez sélectionner n'importe quelle colonne des tables jointes dans votre requête SELECT.
+Condition de Jointure: La condition après ON est cruciale. Elle détermine comment les tables sont liées.
+Exclusion en cas de Non-Correspondance: Si une ligne dans une des tables n'a pas de correspondance dans l'autre, elle n'est pas incluse dans le résultat de l'INNER JOIN.
+
