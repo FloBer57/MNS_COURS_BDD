@@ -3,7 +3,7 @@
 Fonctionnement
 
 Insertion de Données: Créer implique l'ajout de nouvelles données dans la base de données. Cela peut être l'ajout d'une nouvelle ligne dans une table.
-Commandes SQL Typiques: INSERT INTO en SQL.
+Commandes SQL Typiques: <INSERT INTO en SQL.>
 Dans les Applications Web: Par exemple, lorsqu'un utilisateur s'inscrit sur un site, ses détails sont insérés dans la base de données.
 
 Considérations Techniques
@@ -23,7 +23,7 @@ VALUES ("laurence", "kieffer", "laurencema57@hotmail.fr") : Fournit les valeurs 
 Fonctionnement
 
 Récupération de Données: Lecture et affichage des données existantes. Cela peut être la récupération de toutes les données ou d'un sous-ensemble, selon des critères spécifiques.
-Commandes SQL Typiques: SELECT en SQL.
+Commandes SQL Typiques: <SELECT en SQL.>
 Dans les Applications Web: Afficher les informations d'un utilisateur ou les produits d'un catalogue.
 
 Considérations Techniques
@@ -31,7 +31,7 @@ Considérations Techniques
 Performance: Optimiser les requêtes pour une récupération rapide, surtout avec de grands volumes de données.
 Sécurité: Prévenir l'exposition de données sensibles.
 
-SELECT {NOM TABLE DE DONNEE} nom,prenom,mail FROM tblclient
+SELECT * FROM tblclient
 
 SELECT * : Sélectionnez toutes les colonnes de la table.
 FROM {NOM TABLE DE DONNEE} : Spécifiez la table à partir de laquelle vous souhaitez récupérer les données.
@@ -42,7 +42,7 @@ WHERE id = 5 : Filtrez les données en fonction de la condition spécifiée, dan
 
 Fonctionnement
 Modification de Données Existantes: Changer ou mettre à jour les informations déjà stockées.
-Commandes SQL Typiques: UPDATE en SQL.
+Commandes SQL Typiques: <UPDATE en SQL.>
 Dans les Applications Web: Modifier les détails d'un profil utilisateur ou mettre à jour le statut d'une commande.
 Considérations Techniques
 Gestion des Conflits: S'assurer que les mises à jour n'entrent pas en conflit avec d'autres opérations ou données.
@@ -60,7 +60,7 @@ WHERE id = 5 : Spécifiez la condition pour déterminer quelles lignes de donné
 Fonctionnement:
 
 Effacement de Données: Supprimer des données existantes.
-Commandes SQL Typiques: DELETE FROM en SQL.
+Commandes SQL Typiques: <DELETE FROM en SQL.>
 Dans les Applications Web: Supprimer un compte utilisateur ou retirer un produit de la liste.
 
 ~Considérations Techniques~
@@ -88,7 +88,7 @@ Cette opération est particulièrement utile lorsque vous souhaitez présenter l
 
 Commandes SQL Typiques :
 
-SELECT nom, prenom, age FROM Utilisateurs ORDER BY nom ASC;
+<SELECT nom, prenom, age FROM Utilisateurs ORDER BY nom ASC;>
 
 SELECT nom, prenom, age : Spécifie les colonnes que vous souhaitez récupérer.
 FROM Utilisateurs : Indique la table à partir de laquelle vous récupérez les données.
@@ -105,7 +105,7 @@ L'opération LIMIT est utilisée pour limiter le nombre de résultats renvoyés 
 
 Commandes SQL Typiques :
 
-SELECT nom, prenom FROM Utilisateurs LIMIT 10,10 ;
+<SELECT nom, prenom FROM Utilisateurs LIMIT 10,10 ;>
 
 SELECT nom, prenom : Spécifie les colonnes que vous souhaitez récupérer.
 FROM Utilisateurs : Indique la table à partir de laquelle vous récupérez les données.
@@ -174,3 +174,101 @@ Sélection des Colonnes: Vous pouvez sélectionner n'importe quelle colonne des 
 Condition de Jointure: La condition après ON est cruciale. Elle détermine comment les tables sont liées.
 Exclusion en cas de Non-Correspondance: Si une ligne dans une des tables n'a pas de correspondance dans l'autre, elle n'est pas incluse dans le résultat de l'INNER JOIN.
 
+
+10. Concatenner 
+
+SELECT concat (nom,prenom) AS nomplet
+
+Définition
+La concaténation en SQL est le processus de combiner deux chaînes de caractères ou plus pour former une seule chaîne. En SQL, cela est souvent réalisé avec l'opérateur CONCAT() ou le symbole ||.
+
+Syntaxe de Base
+
+SELECT CONCAT(colonne1, colonne2) AS nom_colonne_concatenee FROM {NOM_TABLE_DE_DONNEE};
+-- ou en utilisant ||
+SELECT colonne1 || colonne2 AS nom_colonne_concatenee FROM {NOM_TABLE_DE_DONNEE};
+Application Pratique
+
+Imaginons que dans notre base de données Baldflix, nous avons une table utilisateur avec des colonnes prenom et nom. Si nous voulons afficher le nom complet de l'utilisateur, nous pourrions faire :
+
+SELECT CONCAT(prenom, ' ', nom) AS nom_complet FROM utilisateur;
+Intégration avec les Concepts Précédents
+
+CRUD: La concaténation peut être utilisée dans toutes les opérations CRUD, par exemple, lors de l'insertion (INSERT INTO) ou de la mise à jour (UPDATE) des données, pour combiner des champs avant de les stocker.
+
+Clés Primaires et Étrangères: Supposons que nous ayons une table commandes liée à la table utilisateur via une clé étrangère. Nous pourrions utiliser un INNER JOIN pour joindre ces tables, puis concaténer les champs pertinents pour obtenir des informations plus complètes.
+
+SELECT CONCAT(u.prenom, ' ', u.nom) AS nom_utilisateur, c.details_commande
+FROM utilisateur u
+INNER JOIN commandes c ON u.id = c.id_utilisateur;
+INNER JOIN: La concaténation est souvent utilisée après un INNER JOIN pour combiner des informations de différentes tables, comme vu dans l'exemple ci-dessus.
+
+La concaténation est un outil puissant pour manipuler et présenter des données de manière plus lisible et informative, en particulier lorsque vous travaillez avec plusieurs tables et opérations dans une base de données.
+
+
+11. GROUP BY
+
+Exemple 1 : Compter le Nombre d'Employés par Département
+Imaginons une table employes dans une entreprise :
+
+employe_id	nom	departement
+1	Alice	Marketing
+2	Bob	Ventes
+3	Charlie	Marketing
+4	Danielle	Ventes
+5	Ethan	Ressources Humaines
+Vous souhaitez savoir combien d'employés travaillent dans chaque département. Voici la requête SQL :
+
+
+SELECT departement, COUNT(employe_id) AS nombre_employes
+FROM employes
+GROUP BY departement;
+
+Résultat :
+
+departement	nombre_employes
+Marketing	2
+Ventes	2
+Ressources Humaines	1
+Exemple 2 : Calculer le Total des Ventes par Produit
+Supposons une table ventes :
+
+vente_id	produit	montant
+1	Ordinateur	800
+2	Smartphone	500
+3	Ordinateur	900
+4	Smartphone	450
+Vous voulez connaître le total des ventes pour chaque produit. Voici la requête :
+
+sql
+Copy code
+SELECT produit, SUM(montant) AS total_ventes
+FROM ventes
+GROUP BY produit;
+Résultat :
+
+produit	total_ventes
+Ordinateur	1700
+Smartphone	950
+Exemple 3 : Trouver la Durée Moyenne des Films par Catégorie
+Considérons une table films pour un site comme Baldflix :
+
+film_id	titre	categorie	duree
+1	Film A	Action	120
+2	Film B	Drame	90
+3	Film C	Action	110
+4	Film D	Drame	95
+Vous souhaitez connaître la durée moyenne des films dans chaque catégorie. La requête serait :
+
+sql
+Copy code
+SELECT categorie, AVG(duree) AS duree_moyenne
+FROM films
+GROUP BY categorie;
+Résultat :
+
+categorie	duree_moyenne
+Action	115
+Drame	92.5
+Résumé
+Dans ces exemples, GROUP BY nous permet de regrouper les données selon une colonne spécifique (comme departement, produit, categorie) et d'effectuer
