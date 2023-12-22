@@ -272,3 +272,11 @@ Action	115
 Drame	92.5
 Résumé
 Dans ces exemples, GROUP BY nous permet de regrouper les données selon une colonne spécifique (comme departement, produit, categorie) et d'effectuer
+
+12. MATH
+
+AVG() pour calculer la moyenne d’un set de valeur. Permet de connaître le prix du panier moyen pour de chaque client
+COUNT() pour compter le nombre de lignes concernées. Permet de savoir combien d’achats a été effectué par chaque client
+MAX() pour récupérer la plus haute valeur. Pratique pour savoir l’achat le plus cher
+MIN() pour récupérer la plus petite valeur. Utile par exemple pour connaître la date du premier achat d’un client
+SUM() pour calculer la somme de plusieurs lign
