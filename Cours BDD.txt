@@ -280,3 +280,15 @@ COUNT() pour compter le nombre de lignes concernées. Permet de savoir combien d
 MAX() pour récupérer la plus haute valeur. Pratique pour savoir l’achat le plus cher
 MIN() pour récupérer la plus petite valeur. Utile par exemple pour connaître la date du premier achat d’un client
 SUM() pour calculer la somme de plusieurs lign
+
+13. Méthode Meurise
+
+La méthode Meurise est une approche utilisée dans la conception des bases de données. Elle implique plusieurs étapes clés :
+
+MCD (Modèle Conceptuel de Données) : Cette étape consiste à modéliser les données sans se soucier des aspects techniques. Cela inclut la définition des entités, des relations, et des attributs.
+
+MLD (Modèle Logique de Données) : Le MCD est transformé en MLD. Cela implique l'organisation des données en tables (ou relations) tout en respectant les règles de la base de données relationnelle.
+
+MPD (Modèle Physique de Données) : Le MLD est ensuite transformé en MPD, qui est la représentation physique des données dans un système de gestion de base de données spécifique (comme MySQL, Oracle, etc.). Cela inclut la création de tables, de clés primaires, de clés étrangères, et d'autres contraintes.
+
+Chaque étape permet de préciser et d'affiner la structure de la base de données, en passant d'une vue conceptuelle à une implémentation technique.
